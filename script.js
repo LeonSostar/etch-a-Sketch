@@ -3,11 +3,20 @@ let picker = 'black';
 let heightWidth = 600 / userIn;
 let userInn = document.querySelector('#inputEl');
 const draw = document.querySelector('#butt');
+const rainbow = document.querySelector('#rainbow');
 const container = document.querySelector('#container');
+const mainMan = document.querySelector('#mainMan');
 
+function getRandomRBG() {
+    let numOne = Math.floor(Math.random() * 256);
+    let numTwo = Math.floor(Math.random() * 256);
+    let numThree = Math.floor(Math.random() * 256);
+    return `rgb(${numOne}, ${numTwo}, ${numThree})`;
+}
 
-draw.addEventListener('click', () => {
-    if(userInn.value && Number(userInn.value) > 0 && Number(userInn.value) < 51) {
+mainMan.addEventListener('click', (e) => {
+    let valE = e.target;
+    if(userInn.value && Number(userInn.value) > 0 && Number(userInn.value) < 51 && valE.id !== 'inputEl') {
         let val = Number(userInn.value);
         console.log(val);
 
@@ -28,13 +37,33 @@ draw.addEventListener('click', () => {
             div.style.height = `${heightWidth}px`;
             div.style.width = `${heightWidth}px`;
             bigD.appendChild(div);
+
+            let target = e.target;
+
+            if(target.id == "butt") {
+
             div.addEventListener('mouseover', () => {
                 div.style.backgroundColor = 'black';
             })
+
+            }
+            
+            if(target.id == "rainbow") {
+
+                div.addEventListener('mouseover', () => {
+                    div.style.backgroundColor = getRandomRBG();
+                })
+    
+                }
+            
             }
         
         }
 
+    }
+
+    else if(valE.id == 'inputEl') {
+        
     }
 
     else {
